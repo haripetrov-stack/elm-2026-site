@@ -385,13 +385,16 @@ footer .note{color:#8fa3d9;font-size:.85rem}
   /* counters */
   function count(el){
     var t=+el.dataset.target, suf=el.dataset.suffix||'', t0=null, D=1400;
+    function fin(){ el.textContent=t+suf; }
+    if(RM || document.hidden){ fin(); return; }
     function step(ts){
       if(!t0) t0=ts;
       var p=Math.min((ts-t0)/D,1), e=1-Math.pow(1-p,3);
       el.textContent=Math.round(t*e)+suf;
       if(p<1) requestAnimationFrame(step);
     }
-    if(RM){ el.textContent=t+suf; } else requestAnimationFrame(step);
+    requestAnimationFrame(step);
+    setTimeout(fin, D+500); /* guaranteed final value even if rAF is throttled */
   }
   var stats=document.getElementById('stats');
   new IntersectionObserver(function(e,ob){
