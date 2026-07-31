@@ -3,20 +3,287 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Something is coming…</title>
+<meta name="description" content="European Leadership Mela 2026 — ISKCON leaders of Europe. New Mayapur, France, 26–27 September 2026. Resources from the AI talk.">
+<title>European Leadership Mela 2026</title>
 <style>
-  html,body{height:100%;margin:0}
-  body{display:flex;align-items:center;justify-content:center;background:#1E2761;
-       font-family:Georgia,'Times New Roman',serif;text-align:center;padding:1rem}
-  h1{color:#D99A2B;font-size:1.9rem;margin:0 0 .6rem}
-  p{color:#CADCFC;font-size:1.05rem;margin:.2rem 0}
+  :root{
+    --navy:#1E2761;
+    --gold:#D99A2B;
+    --ice:#CADCFC;
+    --ink:#22254a;
+    --paper:#ffffff;
+    --soft:#f6f7fc;
+    --line:#e3e6f2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Georgia,'Times New Roman',serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.65;
+    font-size:1.0625rem;
+  }
+  .wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+
+  /* ---------- 1. Hero ---------- */
+  .hero{
+    background:var(--navy);
+    color:#fff;
+    text-align:center;
+    padding:4.5rem 0 4rem;
+  }
+  .hero .rule{
+    width:4.5rem;height:3px;background:var(--gold);
+    margin:0 auto 1.75rem;border:0;
+  }
+  .hero h1{
+    color:var(--gold);
+    font-size:clamp(2rem,6vw,3.25rem);
+    line-height:1.15;
+    margin:0 0 1rem;
+    font-weight:normal;
+    letter-spacing:.01em;
+  }
+  .hero .subtitle{
+    color:#fff;
+    font-size:clamp(1.1rem,3vw,1.4rem);
+    font-style:italic;
+    margin:0 0 1.5rem;
+  }
+  .hero .meta{
+    color:var(--ice);
+    font-size:clamp(.95rem,2.5vw,1.1rem);
+    letter-spacing:.05em;
+    margin:0;
+  }
+
+  /* ---------- generic section ---------- */
+  section{padding:3.25rem 0}
+  h2{
+    color:var(--navy);
+    font-size:clamp(1.4rem,4vw,1.9rem);
+    font-weight:normal;
+    margin:0 0 1.5rem;
+  }
+  h2::after{
+    content:"";display:block;
+    width:3rem;height:3px;background:var(--gold);
+    margin-top:.6rem;
+  }
+
+  /* ---------- 2. About this page ---------- */
+  .reveal{background:var(--soft)}
+  .reveal blockquote{
+    margin:0;
+    padding:1.5rem 1.75rem;
+    background:#fff;
+    border-left:5px solid var(--gold);
+    font-size:clamp(1.05rem,2.8vw,1.25rem);
+    box-shadow:0 1px 4px rgba(30,39,97,.08);
+  }
+
+  /* ---------- 3. Three numbers ---------- */
+  .stats{display:grid;gap:1.25rem;grid-template-columns:1fr}
+  @media(min-width:640px){.stats{grid-template-columns:repeat(3,1fr)}}
+  .stat{
+    background:var(--navy);
+    color:#fff;
+    padding:2rem 1.5rem;
+    text-align:center;
+    border-radius:6px;
+  }
+  .stat .num{
+    display:block;
+    color:var(--gold);
+    font-size:clamp(1.9rem,5vw,2.5rem);
+    line-height:1.1;
+    margin-bottom:.75rem;
+  }
+  .stat .what{color:var(--ice);font-size:.98rem;display:block}
+  .stat .src{color:#8fa3d9;font-size:.85rem;display:block;margin-top:.6rem;font-style:italic}
+
+  /* ---------- 4. Resources ---------- */
+  .res h3{
+    color:var(--navy);
+    font-size:1.2rem;
+    margin:2.25rem 0 .75rem;
+    font-weight:bold;
+  }
+  .res h3:first-of-type{margin-top:0}
+  ol.pilot{margin:0;padding-left:1.4rem}
+  ol.pilot li{margin:.5rem 0}
+  ol.guard{margin:0;padding-left:1.4rem}
+  ol.guard li{margin:.5rem 0}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.98rem;
+    margin-top:.5rem;
+  }
+  th,td{
+    text-align:left;
+    padding:.65rem .75rem;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  th{
+    background:var(--navy);
+    color:var(--gold);
+    font-weight:normal;
+    letter-spacing:.03em;
+  }
+  tr:nth-child(even) td{background:var(--soft)}
+  td:first-child{white-space:nowrap;color:var(--navy);font-weight:bold}
+  @media(max-width:480px){
+    td:first-child{white-space:normal}
+    th,td{padding:.55rem .5rem}
+  }
+  ul.prec{margin:0;padding-left:1.4rem}
+  ul.prec li{margin:.5rem 0}
+
+  /* ---------- 5. Working group ---------- */
+  .group{background:var(--navy);color:#fff;text-align:center}
+  .group h2{color:var(--gold)}
+  .group h2::after{margin-left:auto;margin-right:auto}
+  .group p{
+    max-width:38rem;margin:0 auto;
+    color:var(--ice);
+    font-size:clamp(1.05rem,2.8vw,1.2rem);
+  }
+  .group a{color:var(--gold);text-decoration:underline}
+  .group .subject{
+    display:inline-block;margin-top:1rem;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    padding:.35rem .9rem;
+    border-radius:999px;
+    font-size:.95rem;
+  }
+
+  /* ---------- 6. Footer ---------- */
+  footer{
+    background:#161d4a;
+    color:var(--ice);
+    text-align:center;
+    padding:2rem 1.25rem;
+    font-size:.95rem;
+  }
+  footer .note{
+    color:#8fa3d9;
+    font-size:.85rem;
+    margin-top:.5rem;
+  }
+  footer p{margin:.25rem 0}
 </style>
 </head>
 <body>
-<main>
-  <h1>Something is being built here.</h1>
-  <p>Right now. By an AI coworker, working quietly in the background.</p>
-  <p>Check back in about 40 minutes.</p>
-</main>
+
+<!-- 1. Hero -->
+<header class="hero">
+  <div class="wrap">
+    <hr class="rule">
+    <h1>European Leadership Mela 2026</h1>
+    <p class="subtitle">ISKCON leaders of Europe — serving more with the same hands.</p>
+    <p class="meta">New Mayapur, France&nbsp;·&nbsp;26–27 September 2026</p>
+  </div>
+</header>
+
+<!-- 2. About this page -->
+<section class="reveal" id="about">
+  <div class="wrap">
+    <h2>About this page</h2>
+    <blockquote>This page did not exist when today's session began. It was built and published by an AI coworker, working alone in the background, while the presentation you just watched was being delivered. One instruction, thirty minutes, zero code written by a human. That is the point of the talk.</blockquote>
+  </div>
+</section>
+
+<!-- 3. Why AI, in three numbers -->
+<section id="numbers">
+  <div class="wrap">
+    <h2>Why AI, in three numbers</h2>
+    <div class="stats">
+      <div class="stat">
+        <span class="num">280×</span>
+        <span class="what">cheaper for the same AI capability in 2 years</span>
+        <span class="src">Stanford HAI</span>
+      </div>
+      <div class="stat">
+        <span class="num">92% → 7%</span>
+        <span class="what">nonprofits using AI vs those seeing major gains</span>
+        <span class="src">Virtuous 2026</span>
+      </div>
+      <div class="stat">
+        <span class="num">15+ hrs/week</span>
+        <span class="what">saved by one nonprofit with an AI assistant</span>
+        <span class="src">TechSoup 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Resources from the talk -->
+<section class="res reveal" id="resources">
+  <div class="wrap">
+    <h2>Resources from the talk</h2>
+
+    <h3>The 30-day pilot</h3>
+    <ol class="pilot">
+      <li>Pick ONE documented process</li>
+      <li>Measure the baseline hours</li>
+      <li>Pilot with 2–3 people</li>
+      <li>Compare hours AND quality</li>
+      <li>Decide: scale, fix, or drop</li>
+    </ol>
+
+    <h3>Four guardrails (one page of policy)</h3>
+    <ol class="guard">
+      <li>Human review — nothing AI-written goes out unread.</li>
+      <li>Data rules — no donor/personal data in public tools; use business/no-training modes.</li>
+      <li>A short list of approved tools + one named owner.</li>
+      <li>Payments verified by call-back on a known number — no exceptions.</li>
+    </ol>
+
+    <h3>Tools by desk</h3>
+    <table>
+      <thead>
+        <tr><th scope="col">Desk</th><th scope="col">Where AI helps</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Administration</td><td>meeting minutes, drafts, rotas</td></tr>
+        <tr><td>Communications</td><td>newsletters, translations, social drafts</td></tr>
+        <tr><td>Book production</td><td>translation QA pipelines</td></tr>
+        <tr><td>Book distribution</td><td>follow-up letters, stats analysis</td></tr>
+        <tr><td>Fundraising</td><td>donor personalization, smart defaults</td></tr>
+        <tr><td>Finance</td><td>receipt capture, faster close</td></tr>
+        <tr><td>Leaders personally</td><td>inbox triage, briefings, a critic for your plans</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Precedents worth knowing</h3>
+    <ul class="prec">
+      <li>LDS Church Handbook AI section (Dec 2025)</li>
+      <li>BBT Transcend app AI policy</li>
+      <li>Vatican live translation in 60 languages (2026)</li>
+      <li>Free nonprofit AI policy builder at ffwd.org (~20 min)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. The working group -->
+<section class="group" id="working-group">
+  <div class="wrap">
+    <h2>The working group</h2>
+    <p>Interested in a shared European workflow library, per-language translation QA, joint training and one common guardrails template? Write to <a href="mailto:info@bhaktiyoga.info?subject=ELM%20AI%20working%20group">info@bhaktiyoga.info</a> — subject &ldquo;ELM AI working group&rdquo;.</p>
+    <span class="subject">Subject: ELM AI working group</span>
+  </div>
+</section>
+
+<!-- 6. Footer -->
+<footer>
+  <p>Prepared with the help of an AI coworker · Pitambara dasa · 2026</p>
+  <p class="note">Sources for every number quoted here are listed in the talk's handout.</p>
+</footer>
+
 </body>
 </html>
