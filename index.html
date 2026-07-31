@@ -6,215 +6,205 @@
 <meta name="description" content="European Leadership Mela 2026 — ISKCON leaders of Europe. New Mayapur, France, 26–27 September 2026. Resources from the AI talk.">
 <title>European Leadership Mela 2026</title>
 <style>
-  :root{
-    --navy:#1E2761;
-    --gold:#D99A2B;
-    --ice:#CADCFC;
-    --ink:#22254a;
-    --paper:#ffffff;
-    --soft:#f6f7fc;
-    --line:#e3e6f2;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family:Georgia,'Times New Roman',serif;
-    color:var(--ink);
-    background:var(--paper);
-    line-height:1.65;
-    font-size:1.0625rem;
-  }
-  .wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+:root{
+  --navy:#1E2761; --navy-2:#2B3575; --navy-deep:#161d4a;
+  --gold:#D99A2B; --gold-soft:#F5E7CE; --ice:#CADCFC;
+  --ink:#23264a; --paper:#ffffff; --soft:#f5f6fb; --line:#e2e5f1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Georgia,'Times New Roman',serif;font-size:1.0625rem;line-height:1.65}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.25rem}
+h2{color:var(--navy);font-weight:normal;font-size:clamp(1.5rem,4vw,2.1rem);margin:0 0 .5rem}
+.lead{color:#5a5f86;font-style:italic;margin:0 0 2.25rem;font-size:1.05rem}
+section{padding:4.5rem 0}
+.snug{padding-top:3rem}
 
-  /* ---------- 1. Hero ---------- */
-  .hero{
-    background:var(--navy);
-    color:#fff;
-    text-align:center;
-    padding:4.5rem 0 4rem;
-  }
-  .hero .rule{
-    width:4.5rem;height:3px;background:var(--gold);
-    margin:0 auto 1.75rem;border:0;
-  }
-  .hero h1{
-    color:var(--gold);
-    font-size:clamp(2rem,6vw,3.25rem);
-    line-height:1.15;
-    margin:0 0 1rem;
-    font-weight:normal;
-    letter-spacing:.01em;
-  }
-  .hero .subtitle{
-    color:#fff;
-    font-size:clamp(1.1rem,3vw,1.4rem);
-    font-style:italic;
-    margin:0 0 1.5rem;
-  }
-  .hero .meta{
-    color:var(--ice);
-    font-size:clamp(.95rem,2.5vw,1.1rem);
-    letter-spacing:.05em;
-    margin:0;
-  }
+/* ---------- reveals ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease-out,transform .65s ease-out}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}
+.d4{transition-delay:.38s}.d5{transition-delay:.48s}.d6{transition-delay:.58s}.d7{transition-delay:.68s}
+html.rm .rv{transition:none;opacity:1;transform:none}
 
-  /* ---------- generic section ---------- */
-  section{padding:3.25rem 0}
-  h2{
-    color:var(--navy);
-    font-size:clamp(1.4rem,4vw,1.9rem);
-    font-weight:normal;
-    margin:0 0 1.5rem;
-  }
-  h2::after{
-    content:"";display:block;
-    width:3rem;height:3px;background:var(--gold);
-    margin-top:.6rem;
-  }
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(115% 90% at 50% 10%,var(--navy-2) 0%,var(--navy) 55%,var(--navy-deep) 100%);
+  color:#fff;text-align:center;overflow:hidden;padding:2rem 0}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.hero .inner{position:relative;z-index:1;padding:0 1.25rem}
+.hero h1{font-weight:normal;color:#fff;line-height:1.12;margin:0 0 1.4rem;
+  font-size:clamp(2.3rem,7.5vw,4.2rem);letter-spacing:.01em}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(24px);
+  animation:wUp .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes wUp{to{opacity:1;transform:none}}
+html.rm .hero h1 .w{animation:none;opacity:1;transform:none}
+.hero .sub{color:var(--gold);font-style:italic;font-size:clamp(1.15rem,3.2vw,1.55rem);margin:0 0 2.6rem}
+.hero .meta{color:var(--ice);font-size:clamp(.95rem,2.6vw,1.12rem);letter-spacing:.14em;text-transform:uppercase;margin:0}
+.hero .sub,.hero .meta,.hero .hint{opacity:0;animation:wUp .9s ease-out forwards}
+.hero .sub{animation-delay:1.05s}.hero .meta{animation-delay:1.35s}.hero .hint{animation-delay:2s}
+html.rm .hero .sub,html.rm .hero .meta,html.rm .hero .hint{animation:none;opacity:1}
+.hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);color:var(--gold)}
+.hint svg{display:block;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+html.rm .hint svg{animation:none}
 
-  /* ---------- 2. About this page ---------- */
-  .reveal{background:var(--soft)}
-  .reveal blockquote{
-    margin:0;
-    padding:1.5rem 1.75rem;
-    background:#fff;
-    border-left:5px solid var(--gold);
-    font-size:clamp(1.05rem,2.8vw,1.25rem);
-    box-shadow:0 1px 4px rgba(30,39,97,.08);
-  }
+/* ---------- dots nav ---------- */
+.dots{position:fixed;right:1.1rem;top:50%;transform:translateY(-50%);z-index:9;
+  display:flex;flex-direction:column;gap:.7rem;margin:0;padding:0;list-style:none}
+.dots button{width:.72rem;height:.72rem;border-radius:50%;border:2px solid var(--gold);
+  background:transparent;cursor:pointer;padding:0;transition:background .3s,transform .3s}
+.dots button:hover{transform:scale(1.25)}
+.dots li.on button{background:var(--gold)}
+@media(max-width:900px){.dots{display:none}}
 
-  /* ---------- 3. Three numbers ---------- */
-  .stats{display:grid;gap:1.25rem;grid-template-columns:1fr}
-  @media(min-width:640px){.stats{grid-template-columns:repeat(3,1fr)}}
-  .stat{
-    background:var(--navy);
-    color:#fff;
-    padding:2rem 1.5rem;
-    text-align:center;
-    border-radius:6px;
-  }
-  .stat .num{
-    display:block;
-    color:var(--gold);
-    font-size:clamp(1.9rem,5vw,2.5rem);
-    line-height:1.1;
-    margin-bottom:.75rem;
-  }
-  .stat .what{color:var(--ice);font-size:.98rem;display:block}
-  .stat .src{color:#8fa3d9;font-size:.85rem;display:block;margin-top:.6rem;font-style:italic}
+/* ---------- about / typewriter ---------- */
+.about{background:var(--soft)}
+.type-line{font-size:clamp(1.35rem,4vw,2rem);color:var(--navy);min-height:2.6em;margin:0 0 1.25rem}
+.caret{border-right:3px solid var(--gold);padding-right:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{border-color:transparent}}
+html.rm .caret{animation:none;border-color:transparent}
+.after{opacity:0;transition:opacity 1s ease .2s;max-width:44rem;font-size:1.1rem}
+.after.show{opacity:1}
 
-  /* ---------- 4. Resources ---------- */
-  .res h3{
-    color:var(--navy);
-    font-size:1.2rem;
-    margin:2.25rem 0 .75rem;
-    font-weight:bold;
-  }
-  .res h3:first-of-type{margin-top:0}
-  ol.pilot{margin:0;padding-left:1.4rem}
-  ol.pilot li{margin:.5rem 0}
-  ol.guard{margin:0;padding-left:1.4rem}
-  ol.guard li{margin:.5rem 0}
-  table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:.98rem;
-    margin-top:.5rem;
-  }
-  th,td{
-    text-align:left;
-    padding:.65rem .75rem;
-    border-bottom:1px solid var(--line);
-    vertical-align:top;
-  }
-  th{
-    background:var(--navy);
-    color:var(--gold);
-    font-weight:normal;
-    letter-spacing:.03em;
-  }
-  tr:nth-child(even) td{background:var(--soft)}
-  td:first-child{white-space:nowrap;color:var(--navy);font-weight:bold}
-  @media(max-width:480px){
-    td:first-child{white-space:normal}
-    th,td{padding:.55rem .5rem}
-  }
-  ul.prec{margin:0;padding-left:1.4rem}
-  ul.prec li{margin:.5rem 0}
+/* ---------- stats ---------- */
+.stats{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:1.5rem}
+@media(min-width:640px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--navy);border-radius:12px;color:#fff;text-align:center;
+  padding:2.4rem 1.4rem;box-shadow:0 10px 26px rgba(30,39,97,.22)}
+.stat .num{display:block;color:var(--gold);font-size:clamp(2.3rem,5.5vw,3rem);line-height:1.05;margin-bottom:.8rem;font-variant-numeric:tabular-nums}
+.stat .what{display:block;color:#fff;font-size:1rem;line-height:1.45}
+.stat .src{display:block;color:#8fa3d9;font-size:.85rem;font-style:italic;margin-top:.7rem}
 
-  /* ---------- 5. Working group ---------- */
-  .group{background:var(--navy);color:#fff;text-align:center}
-  .group h2{color:var(--gold)}
-  .group h2::after{margin-left:auto;margin-right:auto}
-  .group p{
-    max-width:38rem;margin:0 auto;
-    color:var(--ice);
-    font-size:clamp(1.05rem,2.8vw,1.2rem);
-  }
-  .group a{color:var(--gold);text-decoration:underline}
-  .group .subject{
-    display:inline-block;margin-top:1rem;
-    border:1px solid var(--gold);
-    color:var(--gold);
-    padding:.35rem .9rem;
-    border-radius:999px;
-    font-size:.95rem;
-  }
+/* ---------- desks ---------- */
+.deskgrid{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));margin:1.75rem 0 1.1rem}
+.desk{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:1.15rem .9rem;
+  text-align:center;cursor:pointer;font:inherit;color:var(--navy);
+  transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.desk svg{display:block;margin:0 auto .55rem;stroke:var(--gold)}
+.desk:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(30,39,97,.14)}
+.desk[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.desk[aria-selected="true"] svg{stroke:var(--gold)}
+.desk .t{font-size:.95rem;line-height:1.3;display:block}
+.deskpanel{background:var(--soft);border-radius:12px;padding:1.7rem 1.6rem;min-height:11.5rem;
+  opacity:1;transition:opacity .3s}
+.deskpanel.fade{opacity:0}
+.deskpanel h3{margin:0 0 .8rem;color:var(--navy);font-size:1.25rem;font-weight:bold}
+.deskpanel ul{margin:0 0 1rem;padding-left:1.3rem}
+.deskpanel li{margin:.4rem 0}
+.deskpanel .tip{background:var(--gold-soft);border-radius:8px;padding:.7rem 1rem;display:inline-block}
+.deskpanel .tip b{color:var(--navy)}
 
-  /* ---------- 6. Footer ---------- */
-  footer{
-    background:#161d4a;
-    color:var(--ice);
-    text-align:center;
-    padding:2rem 1.25rem;
-    font-size:.95rem;
-  }
-  footer .note{
-    color:#8fa3d9;
-    font-size:.85rem;
-    margin-top:.5rem;
-  }
-  footer p{margin:.25rem 0}
+/* ---------- pilot timeline ---------- */
+.pilot{background:var(--soft)}
+.tl{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.6rem}
+.tl .bar{position:absolute;top:1.45rem;left:9%;right:9%;height:3px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform 1.3s ease-out .2s}
+.tl.in .bar{transform:scaleX(1)}
+html.rm .tl .bar{transform:scaleX(1);transition:none}
+.step{text-align:center;position:relative}
+.step .n{width:3rem;height:3rem;border-radius:50%;background:#fff;border:3px solid var(--gold);
+  color:var(--navy);font-size:1.25rem;display:flex;align-items:center;justify-content:center;
+  margin:0 auto .8rem;position:relative;z-index:1}
+.step b{display:block;color:var(--navy);font-size:1rem;margin-bottom:.3rem}
+.step span{font-size:.9rem;color:#5a5f86;line-height:1.4;display:block}
+@media(max-width:720px){
+  .tl{grid-template-columns:1fr;gap:1.6rem}
+  .tl .bar{left:1.45rem;right:auto;top:5%;bottom:5%;width:3px;height:auto;
+    transform:scaleY(0);transform-origin:top}
+  .tl.in .bar{transform:scaleY(1)}
+  .step{display:grid;grid-template-columns:3rem 1fr;gap:1rem;text-align:left;align-items:start}
+  .step .n{margin:0}
+}
+.pilot .motto{margin-top:2.4rem;text-align:center;color:var(--gold);font-style:italic;
+  font-size:clamp(1.15rem,3vw,1.45rem)}
+.pilot .motto b{color:var(--navy)}
+
+/* ---------- guardrails ---------- */
+.guards{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:1.75rem}
+@media(min-width:680px){.guards{grid-template-columns:1fr 1fr}}
+.guard{background:#fff;border-radius:12px;padding:1.5rem 1.5rem 1.4rem;box-shadow:0 6px 18px rgba(30,39,97,.10);
+  transition:transform .25s,box-shadow .25s}
+.guard:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(30,39,97,.16)}
+.guard .ic{width:2.9rem;height:2.9rem;border-radius:50%;background:var(--gold-soft);
+  display:flex;align-items:center;justify-content:center;margin-bottom:.9rem}
+.guard .ic svg{stroke:var(--navy)}
+.guard b{color:var(--navy);font-size:1.1rem;display:block;margin-bottom:.35rem}
+.guard p{margin:0;font-size:.98rem}
+.prec{margin-top:3rem;border-top:1px solid var(--line);padding-top:1.6rem;font-size:.95rem;color:#5a5f86}
+.prec b{color:var(--navy)}
+
+/* ---------- group CTA ---------- */
+.group{background:radial-gradient(120% 120% at 50% 0%,var(--navy-2) 0%,var(--navy) 60%,var(--navy-deep) 100%);
+  color:#fff;text-align:center}
+.group h2{color:var(--gold)}
+.group p{max-width:40rem;margin:0 auto 2rem;color:var(--ice);font-size:1.1rem}
+.btn{display:inline-block;background:var(--gold);color:var(--navy-deep);text-decoration:none;
+  padding:.85rem 2.1rem;border-radius:999px;font-size:1.05rem;
+  transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.group .mail{display:block;margin-top:1rem;color:#8fa3d9;font-size:.92rem}
+
+/* ---------- footer ---------- */
+footer{background:var(--navy-deep);color:var(--ice);text-align:center;padding:2.2rem 1.25rem;font-size:.95rem}
+footer p{margin:.3rem 0}
+footer .note{color:#8fa3d9;font-size:.85rem}
 </style>
 </head>
 <body>
 
-<!-- 1. Hero -->
-<header class="hero">
-  <div class="wrap">
-    <hr class="rule">
-    <h1>European Leadership Mela 2026</h1>
-    <p class="subtitle">ISKCON leaders of Europe — serving more with the same hands.</p>
-    <p class="meta">New Mayapur, France&nbsp;·&nbsp;26–27 September 2026</p>
+<ul class="dots" aria-label="Sections">
+  <li data-for="top" class="on"><button aria-label="Top"></button></li>
+  <li data-for="about"><button aria-label="About this page"></button></li>
+  <li data-for="numbers"><button aria-label="Three numbers"></button></li>
+  <li data-for="desks"><button aria-label="Pick your desk"></button></li>
+  <li data-for="pilot"><button aria-label="The 30-day pilot"></button></li>
+  <li data-for="guards"><button aria-label="Guardrails"></button></li>
+  <li data-for="group"><button aria-label="Working group"></button></li>
+</ul>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="inner">
+    <h1 id="heroTitle">European Leadership Mela 2026</h1>
+    <p class="sub">ISKCON leaders of Europe — serving more with the same hands.</p>
+    <p class="meta">New Mayapur, France&nbsp;&middot;&nbsp;26–27 September 2026</p>
+  </div>
+  <div class="hint" aria-hidden="true">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
 </header>
 
-<!-- 2. About this page -->
-<section class="reveal" id="about">
+<!-- ABOUT -->
+<section class="about" id="about">
   <div class="wrap">
-    <h2>About this page</h2>
-    <blockquote>This page did not exist when today's session began. It was built and published by an AI coworker, working alone in the background, while the presentation you just watched was being delivered. One instruction, thirty minutes, zero code written by a human. That is the point of the talk.</blockquote>
+    <h2 class="rv">About this page</h2>
+    <p class="type-line"><span id="type">This page did not exist when today's session began.</span><span class="caret" id="caret" hidden></span></p>
+    <p class="after" id="after">It was built and published by an AI coworker, working alone in the
+    background, while the presentation you just watched was being delivered. One instruction,
+    zero code written by a human. That is the point of the talk.</p>
   </div>
 </section>
 
-<!-- 3. Why AI, in three numbers -->
+<!-- NUMBERS -->
 <section id="numbers">
   <div class="wrap">
-    <h2>Why AI, in three numbers</h2>
-    <div class="stats">
-      <div class="stat">
-        <span class="num">280×</span>
+    <h2 class="rv">Why AI, in three numbers</h2>
+    <div class="stats" id="stats">
+      <div class="stat rv d1">
+        <span class="num" data-target="280" data-suffix="×">0×</span>
         <span class="what">cheaper for the same AI capability in 2 years</span>
         <span class="src">Stanford HAI</span>
       </div>
-      <div class="stat">
-        <span class="num">92% → 7%</span>
+      <div class="stat rv d2">
+        <span class="num"><span data-target="92" data-suffix="%">0%</span> → <span data-target="7" data-suffix="%">0%</span></span>
         <span class="what">nonprofits using AI vs those seeing major gains</span>
         <span class="src">Virtuous 2026</span>
       </div>
-      <div class="stat">
-        <span class="num">15+ hrs/week</span>
+      <div class="stat rv d3">
+        <span class="num"><span data-target="15" data-suffix="+">0</span> hrs/wk</span>
         <span class="what">saved by one nonprofit with an AI assistant</span>
         <span class="src">TechSoup 2025</span>
       </div>
@@ -222,68 +212,236 @@
   </div>
 </section>
 
-<!-- 4. Resources from the talk -->
-<section class="res reveal" id="resources">
+<!-- DESKS -->
+<section class="reveal desksec" id="desks" style="background:var(--soft)">
   <div class="wrap">
-    <h2>Resources from the talk</h2>
-
-    <h3>The 30-day pilot</h3>
-    <ol class="pilot">
-      <li>Pick ONE documented process</li>
-      <li>Measure the baseline hours</li>
-      <li>Pilot with 2–3 people</li>
-      <li>Compare hours AND quality</li>
-      <li>Decide: scale, fix, or drop</li>
-    </ol>
-
-    <h3>Four guardrails (one page of policy)</h3>
-    <ol class="guard">
-      <li>Human review — nothing AI-written goes out unread.</li>
-      <li>Data rules — no donor/personal data in public tools; use business/no-training modes.</li>
-      <li>A short list of approved tools + one named owner.</li>
-      <li>Payments verified by call-back on a known number — no exceptions.</li>
-    </ol>
-
-    <h3>Tools by desk</h3>
-    <table>
-      <thead>
-        <tr><th scope="col">Desk</th><th scope="col">Where AI helps</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Administration</td><td>meeting minutes, drafts, rotas</td></tr>
-        <tr><td>Communications</td><td>newsletters, translations, social drafts</td></tr>
-        <tr><td>Book production</td><td>translation QA pipelines</td></tr>
-        <tr><td>Book distribution</td><td>follow-up letters, stats analysis</td></tr>
-        <tr><td>Fundraising</td><td>donor personalization, smart defaults</td></tr>
-        <tr><td>Finance</td><td>receipt capture, faster close</td></tr>
-        <tr><td>Leaders personally</td><td>inbox triage, briefings, a critic for your plans</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Precedents worth knowing</h3>
-    <ul class="prec">
-      <li>LDS Church Handbook AI section (Dec 2025)</li>
-      <li>BBT Transcend app AI policy</li>
-      <li>Vatican live translation in 60 languages (2026)</li>
-      <li>Free nonprofit AI policy builder at ffwd.org (~20 min)</li>
-    </ul>
+    <h2 class="rv">Pick your desk</h2>
+    <p class="lead rv d1">Every service has a seat at this table. Choose yours.</p>
+    <div class="deskgrid" role="tablist" aria-label="Desks">
+      <button class="desk rv d1" role="tab" data-desk="admin" aria-selected="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+        <span class="t">Temple administration</span>
+      </button>
+      <button class="desk rv d2" role="tab" data-desk="comms" aria-selected="false">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.5 9.5 0 0 1 0 13"/></svg>
+        <span class="t">Communications</span>
+      </button>
+      <button class="desk rv d3" role="tab" data-desk="prod" aria-selected="false">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="t">Book production</span>
+      </button>
+      <button class="desk rv d4" role="tab" data-desk="dist" aria-selected="false">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="11" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+        <span class="t">Book distribution</span>
+      </button>
+      <button class="desk rv d5" role="tab" data-desk="fund" aria-selected="false">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 22.5l8.8-8.8a5 5 0 0 0 0-7.1z"/></svg>
+        <span class="t">Fundraising</span>
+      </button>
+      <button class="desk rv d6" role="tab" data-desk="fin" aria-selected="false">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span class="t">Finance &amp; admin</span>
+      </button>
+      <button class="desk rv d7" role="tab" data-desk="you" aria-selected="false">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4.2"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>
+        <span class="t">You, personally</span>
+      </button>
+    </div>
+    <div class="deskpanel rv" id="deskpanel" role="tabpanel" aria-live="polite"></div>
   </div>
 </section>
 
-<!-- 5. The working group -->
-<section class="group" id="working-group">
+<!-- PILOT -->
+<section class="pilot" id="pilot">
   <div class="wrap">
-    <h2>The working group</h2>
-    <p>Interested in a shared European workflow library, per-language translation QA, joint training and one common guardrails template? Write to <a href="mailto:info@bhaktiyoga.info?subject=ELM%20AI%20working%20group">info@bhaktiyoga.info</a> — subject &ldquo;ELM AI working group&rdquo;.</p>
-    <span class="subject">Subject: ELM AI working group</span>
+    <h2 class="rv">The 30-day pilot</h2>
+    <p class="lead rv d1">How the 7% do it — one process at a time.</p>
+    <div class="tl rv" id="tl">
+      <div class="bar" aria-hidden="true"></div>
+      <div class="step rv d1"><div class="n">1</div><b>Pick ONE process</b><span>documented, repeating, measured in hours</span></div>
+      <div class="step rv d2"><div class="n">2</div><b>Measure the baseline</b><span>how many hours does it take today?</span></div>
+      <div class="step rv d3"><div class="n">3</div><b>Pilot with 2–3 people</b><span>ready-made tools first; human review on</span></div>
+      <div class="step rv d4"><div class="n">4</div><b>Compare</b><span>hours saved AND quality — both</span></div>
+      <div class="step rv d5"><div class="n">5</div><b>Decide</b><span>scale it, fix it, or drop it</span></div>
+    </div>
+    <p class="motto rv d5">Don't “adopt AI.” <b>Fix one process — then the next.</b></p>
   </div>
 </section>
 
-<!-- 6. Footer -->
+<!-- GUARDRAILS -->
+<section id="guards">
+  <div class="wrap">
+    <h2 class="rv">Four guardrails — one page of policy</h2>
+    <div class="guards">
+      <div class="guard rv d1">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <b>1 · Human review</b>
+        <p>Nothing AI-written goes out unread by a responsible person.</p>
+      </div>
+      <div class="guard rv d2">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <b>2 · Data rules</b>
+        <p>No donor or personal data in public tools; use business / no-training modes.</p>
+      </div>
+      <div class="guard rv d3">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+        <b>3 · Approved tools, one owner</b>
+        <p>A short whitelist of tools — and one named person who owns the policy.</p>
+      </div>
+      <div class="guard rv d4">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+        <b>4 · Payments: call back</b>
+        <p>Every payment request verified on a known number — no exceptions, not even for “the president on video.”</p>
+      </div>
+    </div>
+    <p class="prec rv d5"><b>Precedents worth knowing:</b> LDS Church Handbook AI section (Dec 2025) ·
+    BBT Transcend app AI policy · Vatican live translation in 60 languages (2026) ·
+    free nonprofit AI policy builder at ffwd.org (~20 min).</p>
+  </div>
+</section>
+
+<!-- GROUP -->
+<section class="group" id="group">
+  <div class="wrap">
+    <h2 class="rv">The working group</h2>
+    <p class="rv d1">Interested in a shared European workflow library, per-language translation QA,
+    joint training and one common guardrails template?</p>
+    <a class="btn rv d2" href="mailto:info@bhaktiyoga.info?subject=ELM%20AI%20working%20group">Join the working group</a>
+    <span class="mail rv d3">info@bhaktiyoga.info · subject “ELM AI working group”</span>
+  </div>
+</section>
+
 <footer>
   <p>Prepared with the help of an AI coworker · Pitambara dasa · 2026</p>
   <p class="note">Sources for every number quoted here are listed in the talk's handout.</p>
 </footer>
 
+<script>
+(function(){
+  var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(RM) document.documentElement.classList.add('rm');
+
+  /* hero title: word stagger */
+  var h = document.getElementById('heroTitle');
+  var words = h.textContent.split(' ');
+  h.textContent = '';
+  words.forEach(function(w,i){
+    var s = document.createElement('span'); s.className='w'; s.textContent=w;
+    s.style.animationDelay = (0.15+i*0.12)+'s';
+    h.appendChild(s);
+    if(i<words.length-1) h.appendChild(document.createTextNode(' '));
+  });
+
+  /* particles */
+  var cv = document.getElementById('stars');
+  if(cv && !RM){
+    var ctx = cv.getContext('2d'), P=[], running=true, dpr=Math.min(window.devicePixelRatio||1,2);
+    function size(){ cv.width=cv.offsetWidth*dpr; cv.height=cv.offsetHeight*dpr; }
+    size(); addEventListener('resize', size);
+    for(var i=0;i<42;i++) P.push({x:Math.random(),y:Math.random(),r:.8+Math.random()*1.7,
+      vx:(Math.random()-.5)*.00035,vy:(Math.random()-.5)*.00028,a:.25+Math.random()*.5});
+    (function tick(){
+      if(running){
+        ctx.clearRect(0,0,cv.width,cv.height);
+        P.forEach(function(p){
+          p.x=(p.x+p.vx+1)%1; p.y=(p.y+p.vy+1)%1;
+          ctx.beginPath();
+          ctx.arc(p.x*cv.width,p.y*cv.height,p.r*dpr,0,6.2832);
+          ctx.fillStyle='rgba(217,154,43,'+p.a+')';
+          ctx.fill();
+        });
+      }
+      requestAnimationFrame(tick);
+    })();
+    new IntersectionObserver(function(e){ running = e[0].isIntersecting; })
+      .observe(document.getElementById('top'));
+  }
+
+  /* reveals */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.18});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* dots */
+  var dots = document.querySelectorAll('.dots li');
+  var secio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        dots.forEach(function(d){ d.classList.toggle('on', d.dataset.for===e.target.id); });
+      }
+    });
+  },{threshold:.45});
+  dots.forEach(function(d){
+    var sec = document.getElementById(d.dataset.for);
+    if(sec){ secio.observe(sec);
+      d.querySelector('button').addEventListener('click',function(){ sec.scrollIntoView({behavior: RM?'auto':'smooth'}); });
+    }
+  });
+
+  /* counters */
+  function count(el){
+    var t=+el.dataset.target, suf=el.dataset.suffix||'', t0=null, D=1400;
+    function step(ts){
+      if(!t0) t0=ts;
+      var p=Math.min((ts-t0)/D,1), e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(t*e)+suf;
+      if(p<1) requestAnimationFrame(step);
+    }
+    if(RM){ el.textContent=t+suf; } else requestAnimationFrame(step);
+  }
+  var stats=document.getElementById('stats');
+  new IntersectionObserver(function(e,ob){
+    if(e[0].isIntersecting){ stats.querySelectorAll('[data-target]').forEach(count); ob.disconnect(); }
+  },{threshold:.35}).observe(stats);
+
+  /* typewriter */
+  var tEl=document.getElementById('type'), caret=document.getElementById('caret'), after=document.getElementById('after');
+  var full=tEl.textContent;
+  if(!RM){
+    tEl.textContent='';
+    new IntersectionObserver(function(e,ob){
+      if(!e[0].isIntersecting) return;
+      ob.disconnect(); caret.hidden=false;
+      var i=0;
+      (function ty(){
+        if(i<=full.length){ tEl.textContent=full.slice(0,i); i++; setTimeout(ty,34); }
+        else{ setTimeout(function(){caret.hidden=true;},1200); after.classList.add('show'); }
+      })();
+    },{threshold:.6}).observe(document.getElementById('about'));
+  } else after.classList.add('show');
+
+  /* timeline draw */
+  var tl=document.getElementById('tl');
+  new IntersectionObserver(function(e,ob){
+    if(e[0].isIntersecting){ tl.classList.add('in'); ob.disconnect(); }
+  },{threshold:.3}).observe(tl);
+
+  /* desks */
+  var DATA={
+    admin:{t:'Temple administration',b:['Meeting minutes with owners and deadlines — from a recording, in minutes.','First drafts of letters, notices and annual reports.','Rotas, festival checklists and volunteer briefs from last year’s notes.'],tip:'Record one council meeting and let AI draft the minutes — review, then send.'},
+    comms:{t:'Communications & outreach',b:['Newsletters and social drafts in minutes — reviewed by a devotee before posting.','One announcement, every language your congregation speaks.','Event promotion and website copy, kept consistent.'],tip:'Draft the next newsletter with AI and edit it by hand — measure the time.'},
+    prod:{t:'Book production',b:['Translation QA pipelines: transliteration, meaning fidelity, spelling, formatting.','One severity-ranked report; the editor makes every call.','Checking time: hours become minutes per chapter.'],tip:'Pilot one chapter of your language’s current title through an AI QA check.'},
+    dist:{t:'Book distribution',b:['Personal thank-you and invitation letters to every contact, drafted overnight.','Sankirtan statistics analyzed and visualized by team, place, season.','Flyers and table signs localized per country in hours.'],tip:'Send AI-drafted, human-reviewed thank-you letters to last month’s contacts.'},
+    fund:{t:'Fundraising',b:['Donor-personalized asks and smart defaults (A/B-tested gains elsewhere).','Segmentation: the right message to the right supporter.','Grant drafting on a structured process — not one-shot prompting.'],tip:'A/B test one appeal: AI-suggested amounts vs your current defaults.'},
+    fin:{t:'Finance & admin',b:['Receipt capture matched to funds and programmes automatically.','Faster monthly close — the treasurer still signs everything.','Board papers and report drafts prepared for review.'],tip:'Automate one expense category end-to-end and compare the hours.'},
+    you:{t:'You, personally',b:['Inbox triage: long threads summarized, replies drafted for your edit.','One-page briefings before meetings — the three decisions that matter.','A critic for your plans: ask it to argue against you.'],tip:'Before your next council, ask AI to make the strongest case AGAINST your plan.'}
+  };
+  var panel=document.getElementById('deskpanel'), desks=document.querySelectorAll('.desk');
+  function show(key){
+    var d=DATA[key];
+    panel.innerHTML='<h3>'+d.t+'</h3><ul>'+d.b.map(function(x){return '<li>'+x+'</li>';}).join('')+
+      '</ul><span class="tip"><b>Start Monday with:</b> '+d.tip+'</span>';
+  }
+  desks.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      desks.forEach(function(b){ b.setAttribute('aria-selected', b===btn ? 'true':'false'); });
+      panel.classList.add('fade');
+      setTimeout(function(){ show(btn.dataset.desk); panel.classList.remove('fade'); }, RM?0:180);
+    });
+  });
+  show('admin');
+})();
+</script>
 </body>
 </html>
