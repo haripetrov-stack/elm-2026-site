@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="European Leadership Mela 2026 — ISKCON leaders of Europe. New Mayapur, France, 26–27 September 2026. Resources from the AI talk.">
 <title>European Leadership Mela 2026</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%231E2761'/%3E%3Ccircle cx='8' cy='8' r='3.2' fill='%23D99A2B'/%3E%3C/svg%3E">
 <style>
 :root{
   --navy:#1E2761; --navy-2:#2B3575; --navy-deep:#161d4a;
@@ -21,9 +22,9 @@ h2{color:var(--navy);font-weight:normal;font-size:clamp(1.5rem,4vw,2.1rem);margi
 section{padding:4.5rem 0}
 .snug{padding-top:3rem}
 
-/* ---------- reveals ---------- */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease-out,transform .65s ease-out}
-.rv.in{opacity:1;transform:none}
+/* ---------- reveals (hidden only when JS is active) ---------- */
+html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease-out,transform .65s ease-out}
+html.js .rv.in{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}
 .d4{transition-delay:.38s}.d5{transition-delay:.48s}.d6{transition-delay:.58s}.d7{transition-delay:.68s}
 html.rm .rv{transition:none;opacity:1;transform:none}
@@ -65,8 +66,9 @@ html.rm .hint svg{animation:none}
 .caret{border-right:3px solid var(--gold);padding-right:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{border-color:transparent}}
 html.rm .caret{animation:none;border-color:transparent}
-.after{opacity:0;transition:opacity 1s ease .2s;max-width:44rem;font-size:1.1rem}
-.after.show{opacity:1}
+html.js .after{opacity:0;transition:opacity 1s ease .2s}
+.after{max-width:44rem;font-size:1.1rem}
+html.js .after.show{opacity:1}
 
 /* ---------- stats ---------- */
 .stats{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:1.5rem}
@@ -99,9 +101,9 @@ html.rm .caret{animation:none;border-color:transparent}
 /* ---------- pilot timeline ---------- */
 .pilot{background:var(--soft)}
 .tl{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.6rem}
-.tl .bar{position:absolute;top:1.45rem;left:9%;right:9%;height:3px;background:var(--gold);
-  transform:scaleX(0);transform-origin:left;transition:transform 1.3s ease-out .2s}
-.tl.in .bar{transform:scaleX(1)}
+.tl .bar{position:absolute;top:1.45rem;left:9%;right:9%;height:3px;background:var(--gold)}
+html.js .tl .bar{transform:scaleX(0);transform-origin:left;transition:transform 1.3s ease-out .2s}
+html.js .tl.in .bar{transform:scaleX(1)}
 html.rm .tl .bar{transform:scaleX(1);transition:none}
 .step{text-align:center;position:relative}
 .step .n{width:3rem;height:3rem;border-radius:50%;background:#fff;border:3px solid var(--gold);
@@ -111,9 +113,9 @@ html.rm .tl .bar{transform:scaleX(1);transition:none}
 .step span{font-size:.9rem;color:#5a5f86;line-height:1.4;display:block}
 @media(max-width:720px){
   .tl{grid-template-columns:1fr;gap:1.6rem}
-  .tl .bar{left:1.45rem;right:auto;top:5%;bottom:5%;width:3px;height:auto;
-    transform:scaleY(0);transform-origin:top}
-  .tl.in .bar{transform:scaleY(1)}
+  .tl .bar{left:1.45rem;right:auto;top:5%;bottom:5%;width:3px;height:auto}
+  html.js .tl .bar{transform:scaleY(0);transform-origin:top}
+  html.js .tl.in .bar{transform:scaleY(1)}
   .step{display:grid;grid-template-columns:3rem 1fr;gap:1rem;text-align:left;align-items:start}
   .step .n{margin:0}
 }
@@ -318,6 +320,7 @@ footer .note{color:#8fa3d9;font-size:.85rem}
 
 <script>
 (function(){
+  document.documentElement.classList.add('js');
   var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(RM) document.documentElement.classList.add('rm');
 
