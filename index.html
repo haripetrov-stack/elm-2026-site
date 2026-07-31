@@ -116,8 +116,11 @@ html.rm .tl .bar{transform:scaleX(1);transition:none}
   .tl .bar{left:1.45rem;right:auto;top:5%;bottom:5%;width:3px;height:auto}
   html.js .tl .bar{transform:scaleY(0);transform-origin:top}
   html.js .tl.in .bar{transform:scaleY(1)}
-  .step{display:grid;grid-template-columns:3rem 1fr;gap:1rem;text-align:left;align-items:start}
-  .step .n{margin:0}
+  .step{display:grid;grid-template-columns:3rem 1fr;grid-template-rows:auto auto;
+    column-gap:1rem;row-gap:.25rem;text-align:left;align-items:start}
+  .step .n{margin:0;grid-column:1;grid-row:1 / span 2}
+  .step b{grid-column:2;grid-row:1;margin:0;align-self:center}
+  .step span{grid-column:2;grid-row:2}
 }
 .pilot .motto{margin-top:2.4rem;text-align:center;color:var(--gold);font-style:italic;
   font-size:clamp(1.15rem,3vw,1.45rem)}
