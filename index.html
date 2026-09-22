@@ -3,20 +3,589 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Something is coming…</title>
+<meta name="description" content="European Leadership Mela 2026. AI at work in our movement: the talk, its examples and the files behind them.">
+<title>European Leadership Mela 2026 · AI at Work in Our Movement</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%231E2761'/%3E%3Ccircle cx='8' cy='8' r='3.2' fill='%23D99A2B'/%3E%3C/svg%3E">
 <style>
-  html,body{height:100%;margin:0}
-  body{display:flex;align-items:center;justify-content:center;background:#1E2761;
-       font-family:Georgia,'Times New Roman',serif;text-align:center;padding:1rem}
-  h1{color:#D99A2B;font-size:1.9rem;margin:0 0 .6rem}
-  p{color:#CADCFC;font-size:1.05rem;margin:.2rem 0}
+:root{
+  --navy:#1E2761; --navy-2:#2B3575; --navy-deep:#161d4a;
+  --gold:#D99A2B; --gold-soft:#F5E7CE; --ice:#CADCFC;
+  --ink:#23264a; --paper:#ffffff; --soft:#f5f6fb; --line:#e2e5f1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Georgia,'Times New Roman',serif;font-size:1.0625rem;line-height:1.65}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.25rem}
+h2{color:var(--navy);font-weight:normal;font-size:clamp(1.5rem,4vw,2.1rem);margin:0 0 .5rem}
+h3{color:var(--navy);font-weight:bold;font-size:1.2rem;margin:0 0 .4rem}
+.lead{color:#5a5f86;font-style:italic;margin:0 0 2.25rem;font-size:1.05rem}
+section{padding:4.5rem 0}
+a{color:var(--navy)}
+.kick{display:block;color:var(--gold);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+
+/* ---------- reveals (hidden only when JS is active) ---------- */
+html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease-out,transform .65s ease-out}
+html.js .rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}
+.d4{transition-delay:.38s}.d5{transition-delay:.48s}.d6{transition-delay:.58s}.d7{transition-delay:.68s}
+html.rm .rv{transition:none;opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(115% 90% at 50% 10%,var(--navy-2) 0%,var(--navy) 55%,var(--navy-deep) 100%);
+  color:#fff;text-align:center;overflow:hidden;padding:2rem 0}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.hero .inner{position:relative;z-index:1;padding:0 1.25rem}
+.hero h1{font-weight:normal;color:#fff;line-height:1.12;margin:0 0 1.4rem;
+  font-size:clamp(2.3rem,7.5vw,4.2rem);letter-spacing:.01em}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(24px);
+  animation:wUp .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes wUp{to{opacity:1;transform:none}}
+html.rm .hero h1 .w{animation:none;opacity:1;transform:none}
+.hero .sub{color:var(--gold);font-style:italic;font-size:clamp(1.15rem,3.2vw,1.55rem);margin:0 0 2.6rem}
+.hero .meta{color:var(--ice);font-size:clamp(.95rem,2.6vw,1.12rem);letter-spacing:.14em;text-transform:uppercase;margin:0}
+.hero .sub,.hero .meta,.hero .hint{opacity:0;animation:wUp .9s ease-out forwards}
+.hero .sub{animation-delay:1.05s}.hero .meta{animation-delay:1.35s}.hero .hint{animation-delay:2s}
+html.rm .hero .sub,html.rm .hero .meta,html.rm .hero .hint{animation:none;opacity:1}
+.hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);color:var(--gold)}
+.hint svg{display:block;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+html.rm .hint svg{animation:none}
+
+/* ---------- dots nav ---------- */
+.dots{position:fixed;right:1.1rem;top:50%;transform:translateY(-50%);z-index:9;
+  display:flex;flex-direction:column;gap:.7rem;margin:0;padding:0;list-style:none}
+.dots button{width:.72rem;height:.72rem;border-radius:50%;border:2px solid var(--gold);
+  background:transparent;cursor:pointer;padding:0;transition:background .3s,transform .3s}
+.dots button:hover{transform:scale(1.25)}
+.dots li.on button{background:var(--gold)}
+@media(max-width:900px){.dots{display:none}}
+
+/* ---------- about / typewriter ---------- */
+.about{background:var(--soft)}
+.type-line{font-size:clamp(1.35rem,4vw,2rem);color:var(--navy);min-height:2.6em;margin:0 0 1.25rem}
+.caret{border-right:3px solid var(--gold);padding-right:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{border-color:transparent}}
+html.rm .caret{animation:none;border-color:transparent}
+html.js .after{opacity:0;transition:opacity 1s ease .2s}
+.after{max-width:44rem;font-size:1.1rem}
+html.js .after.show{opacity:1}
+.version{margin:1.5rem 0 0;color:#5a5f86;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- stats ---------- */
+.stats{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:1.5rem}
+@media(min-width:640px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--navy);border-radius:12px;color:#fff;text-align:center;
+  padding:2.4rem 1.4rem;box-shadow:0 10px 26px rgba(30,39,97,.22)}
+.stat .num{display:block;color:var(--gold);font-size:clamp(2.3rem,5.5vw,3rem);line-height:1.05;margin-bottom:.8rem;font-variant-numeric:tabular-nums}
+.stat .what{display:block;color:#fff;font-size:1rem;line-height:1.45}
+.stat .src{display:block;color:#8fa3d9;font-size:.85rem;font-style:italic;margin-top:.7rem}
+
+/* ---------- examples ---------- */
+.exs{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:1.75rem}
+.ex{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:1.6rem 1.6rem 1.4rem;
+  display:grid;gap:1.2rem;grid-template-columns:1fr;box-shadow:0 6px 18px rgba(30,39,97,.06)}
+@media(min-width:760px){.ex{grid-template-columns:3fr 2fr}}
+.ex.full{grid-template-columns:1fr}
+.ex.full>*{min-width:0}
+.ex .num{display:inline-flex;width:2rem;height:2rem;border-radius:50%;background:var(--navy);color:#fff;
+  align-items:center;justify-content:center;font-size:.95rem;margin-right:.6rem;vertical-align:middle}
+.ex p{margin:.4rem 0 0;font-size:1rem}
+.ex .take{margin-top:.9rem;padding:.7rem 1rem;background:var(--gold-soft);border-radius:8px;color:var(--navy);font-style:italic}
+.mat{background:var(--soft);border-radius:10px;padding:1rem 1.1rem;margin:0;list-style:none;font-size:.95rem}
+.mat li{margin:.45rem 0;padding-left:1.5rem;position:relative}
+.mat li::before{content:"";position:absolute;left:0;top:.42em;width:.85rem;height:.85rem;border-radius:3px;background:var(--gold)}
+.mat .sz{display:block;color:#5a5f86;font-size:.85rem;font-style:italic}
+.mat b{color:var(--navy)}
+.mat.quiet li::before{background:var(--ice)}
+.steps{margin:.6rem 0 0;padding-left:1.25rem;font-size:.98rem}
+.steps li{margin:.3rem 0}
+.steps li b{color:var(--navy)}
+.pq{margin:.6rem 0;padding:.8rem 1rem;border-left:0;background:var(--soft);border-radius:8px;font-size:.97rem}
+.pq b{color:var(--navy)}
+
+/* ---------- four quadrants (protect, education) ---------- */
+.protect{background:var(--soft)}
+.four{display:grid;gap:1.1rem;grid-template-columns:1fr;margin:1.5rem 0 2rem}
+@media(min-width:680px){.four{grid-template-columns:1fr 1fr}}
+.four .card{background:#fff;border-radius:12px;padding:1.3rem 1.4rem;box-shadow:0 6px 18px rgba(30,39,97,.10)}
+.four .card b{display:block;color:var(--navy);font-size:1.08rem;margin:.1rem 0 .35rem}
+.four .card p{margin:0;font-size:.97rem}
+.ex .four{margin:1rem 0 .5rem}
+.ex .four .card{border:1.5px solid var(--line);box-shadow:none}
+.tblwrap{overflow-x:auto;margin:1.2rem 0 .4rem}
+table.tbl{border-collapse:collapse;width:100%;min-width:36rem;background:#fff;font-size:.93rem;border-radius:12px;overflow:hidden}
+.tbl th{background:var(--navy);color:#fff;text-align:left;padding:.7rem .8rem;font-weight:normal;letter-spacing:.04em}
+.tbl td{padding:.6rem .8rem;border-top:1px solid var(--line);vertical-align:top}
+.tbl td:first-child{color:var(--navy);font-weight:bold}
+.honest{font-size:1.15rem;color:var(--navy);max-width:46rem;margin:0 0 1rem}
+.plain{max-width:46rem;margin:.6rem 0 0}
+
+/* ---------- the request ---------- */
+.ask{text-align:center}
+.ask .big{font-size:clamp(1.3rem,3.5vw,1.9rem);color:var(--navy);max-width:40rem;margin:1.2rem auto 1.2rem;line-height:1.4}
+.ask .next{color:#5a5f86;font-style:italic;margin:0}
+
+/* ---------- questions ---------- */
+.qs{display:grid;gap:1rem;grid-template-columns:1fr;margin-top:1.75rem}
+@media(min-width:680px){.qs{grid-template-columns:1fr 1fr 1fr}}
+.q{background:var(--soft);border-radius:12px;padding:1.2rem 1.3rem}
+.q .n{display:inline-flex;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--navy);color:#fff;
+  align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.6rem}
+.q b{display:block;color:var(--navy);font-size:1.02rem;margin-bottom:.3rem}
+.q span{font-size:.95rem;line-height:1.5}
+.qmotto{margin-top:2rem;text-align:center;color:var(--gold);font-style:italic;font-size:clamp(1.1rem,3vw,1.35rem)}
+
+/* ---------- sources ---------- */
+.sources{background:var(--soft)}
+.srcl{margin:1rem 0 0;padding-left:1.25rem;font-size:.95rem;color:#3b3f66}
+.srcl li{margin:.35rem 0}
+.srcl a{word-break:break-all}
+
+/* ---------- group CTA ---------- */
+.group{background:radial-gradient(120% 120% at 50% 0%,var(--navy-2) 0%,var(--navy) 60%,var(--navy-deep) 100%);
+  color:#fff;text-align:center}
+.group h2{color:var(--gold)}
+.group p{max-width:40rem;margin:0 auto 2rem;color:var(--ice);font-size:1.1rem}
+.btn{display:inline-block;background:var(--gold);color:var(--navy-deep);text-decoration:none;
+  padding:.85rem 2.1rem;border-radius:999px;font-size:1.05rem;
+  transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.group .mail{display:block;margin-top:1rem;color:#8fa3d9;font-size:.92rem}
+
+/* ---------- footer ---------- */
+footer{background:var(--navy-deep);color:var(--ice);text-align:center;padding:2.2rem 1.25rem;font-size:.95rem}
+footer p{margin:.3rem 0}
+footer .note{color:#8fa3d9;font-size:.85rem}
 </style>
 </head>
 <body>
-<main>
-  <h1>Something is being built here.</h1>
-  <p>Right now. By an AI coworker, working quietly in the background.</p>
-  <p>Check back in about 40 minutes.</p>
-</main>
+
+<ul class="dots" aria-label="Sections">
+  <li data-for="top" class="on"><button aria-label="Top"></button></li>
+  <li data-for="about"><button aria-label="About this page"></button></li>
+  <li data-for="numbers"><button aria-label="Three numbers"></button></li>
+  <li data-for="examples"><button aria-label="What you saw today"></button></li>
+  <li data-for="protect"><button aria-label="Digital verification"></button></li>
+  <li data-for="asks"><button aria-label="What this session asks"></button></li>
+  <li data-for="questions"><button aria-label="Six questions"></button></li>
+  <li data-for="sources"><button aria-label="Sources"></button></li>
+  <li data-for="group"><button aria-label="Working group"></button></li>
+</ul>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="inner">
+    <h1 id="heroTitle">AI at Work in Our Movement</h1>
+    <p class="sub">European Leadership Mela 2026. The talk, its examples and the files behind them.</p>
+    <p class="meta">New Mayapur, France&nbsp;&middot;&nbsp;26&ndash;27 September 2026</p>
+  </div>
+  <div class="hint" aria-hidden="true">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <h2 class="rv">About this page</h2>
+    <p class="type-line"><span id="type">The resource page of the session on AI at work in our movement.</span><span class="caret" id="caret" hidden></span></p>
+    <p class="after" id="after">Here are the examples from the talk, the Law Book draft, the corpus manifest and the source links.
+    Every item has its own download link and no account is needed. Check the version date when using a document. The Law Book draft is unofficial.</p>
+    <p class="version rv d1">Version: 22 September 2026, deck v32, 16 slides.</p>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="wrap">
+    <h2 class="rv">Three numbers from the talk</h2>
+    <div class="stats" id="stats">
+      <div class="stat rv d1">
+        <span class="num" data-target="23" data-suffix=" million">0 million</span>
+        <span class="what">words in 50 files, prepared for the demonstration of questions answered with source references</span>
+        <span class="src">the manifest describes this collection's scope</span>
+      </div>
+      <div class="stat rv d2">
+        <span class="num" data-target="422" data-suffix="">0</span>
+        <span class="what">pages of a searchable draft of the ISKCON Law Book, with search and source links</span>
+        <span class="src">an unapproved working draft; legal and institutional review still matter</span>
+      </div>
+      <div class="stat rv d3">
+        <span class="num" data-target="50000" data-suffix="">0</span>
+        <span class="what">corrections carried into a hyphenation dictionary of 913,000 lines</span>
+        <span class="src">three years of daily work by hand; three weeks with the checks</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLES -->
+<section id="examples">
+  <div class="wrap">
+    <h2 class="rv">What you saw today</h2>
+    <p class="lead rv d1">The examples in the order they were shown, with the material behind them.</p>
+    <div class="exs">
+
+      <article class="ex rv d1" id="voice">
+        <div>
+          <span class="kick">Demonstration</span>
+          <h3><span class="num">1</span>Whose voice is it?</h3>
+          <p>A labelled AI demonstration. The video is not an authentic recording of those words. A recognisable face and a recognisable voice do not by themselves establish where the words came from.</p>
+          <p>Now imagine similar material with a claim on a contested question, and a plausible-looking reference beside it.</p>
+          <p class="take">How would we find the original, and who could confirm its origin?</p>
+        </div>
+        <ul class="mat quiet">
+          <li><b>The recording is not published.</b><span class="sz">Permission for the demonstration covers the room only.</span></li>
+          <li><b>What can be done technically</b> is in the section <a href="#protect">Digital verification for images, audio and video</a>.</li>
+        </ul>
+      </article>
+
+      <article class="ex full rv d2" id="agents">
+        <div>
+          <span class="kick">Risk we carry</span>
+          <h3><span class="num">2</span>When the assistant can act, not only write</h3>
+          <div class="four">
+            <div class="card"><span class="kick">Full control</span><b>Permission is the real setting</b><p>Given access, an assistant can open, change and delete files, send messages and reach connected systems. The account it borrows decides how far it reaches.</p></div>
+            <div class="card"><span class="kick">Unattended</span><b>No one is watching</b><p>Left running alone, it continues past its first mistake. A wrong instruction repeated quickly is harder to undo than a wrong sentence.</p></div>
+            <div class="card"><span class="kick">The boundary</span><b>Limits are agreed first</b><p>Decide in advance which actions need confirmation, which information stays out, and who is able to stop a run that has started.</p></div>
+            <div class="card"><span class="kick">Why it is written down</span><b>A slide outlives a sentence</b><p>This risk was put on a slide on purpose. What is only spoken is forgotten; what is written can be opened again a month later.</p></div>
+          </div>
+          <p class="take">One authorised assistant reaches further than one person's desk. Its limits are agreed before the task begins.</p>
+        </div>
+      </article>
+
+      <article class="ex full rv d3" id="benefits">
+        <div>
+          <span class="kick">Benefits and costs</span>
+          <h3><span class="num">3</span>Benefits and risks of AI in our work</h3>
+          <p>Each use needs someone who checks the result and takes responsibility.</p>
+          <div class="tblwrap">
+            <table class="tbl">
+              <thead><tr><th>Area</th><th>What we gain</th><th>Risk without review</th></tr></thead>
+              <tbody>
+                <tr><td>Drafting</td><td>Faster letters, minutes and reports</td><td>Unreviewed messages sent in our name</td></tr>
+                <tr><td>Language</td><td>Drafts in more languages</td><td>Errors in meaning and terminology</td></tr>
+                <tr><td>Memory</td><td>Searchable resolutions and records</td><td>Invented quotations and wrong references</td></tr>
+                <tr><td>Analysis</td><td>Faster research and comparison</td><td>Unsupported conclusions that sound certain</td></tr>
+                <tr><td>Capacity</td><td>More time for devotee care and service</td><td>Fewer opportunities to train successors</td></tr>
+                <tr><td>Voice</td><td>Easier access to recordings and texts</td><td>Fabricated words in a familiar voice</td></tr>
+                <tr><td>Suppliers</td><td>Capability we do not have to build</td><td>Dependence on a few providers and their terms</td></tr>
+                <tr><td>Rules</td><td>Clear expectations once they are set</td><td>Requirements in Europe keep changing by use case</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <article class="ex full rv d4" id="checks">
+        <div>
+          <span class="kick">Internal case</span>
+          <h3><span class="num">4</span>AI checks in our book production</h3>
+          <div class="four">
+            <div class="card"><span class="kick">Our workflow</span><b>Human translation first</b><p>A finished chapter from a human translator, with normal editorial work. The defined checks run afterwards, never instead.</p></div>
+            <div class="card"><span class="kick">What the checks found</span><b>Twelve titles, about 2,000 findings</b><p>Findings are ordered by severity. The editor accepts or rejects each one. A finding is a signal, not a proven error.</p></div>
+            <div class="card"><span class="kick">The largest case</span><b>913,000 lines, 50,000 corrections</b><p>A Bulgarian hyphenation dictionary. By hand, two hours a day for three years. With these checks, two hours a day for three weeks.</p></div>
+            <div class="card"><span class="kick">The precedent</span><b>The tools have changed before</b><p>His Guru Mah&#257;r&#257;ja called the printing press the b&#7771;had-m&#7771;da&#7749;ga, the great drum. He dictated these books into a machine. The tools changed; the responsibility did not.</p></div>
+          </div>
+          <p class="take">The machine finds. The editor decides. That has not changed.</p>
+        </div>
+        <ul class="mat">
+          <li><a href="files/qa-report-sample.html">A sample report: the diacritics check of &#346;r&#299; &#298;&#347;opani&#7779;ad</a><span class="sz">HTML, in Bulgarian &middot; 21 file pairs, summary and conclusion</span></li>
+          <li><a href="files/prompt-translation-check.txt">The prompt behind the meaning check</a><span class="sz">plain text &middot; the weak and the strong prompt, the four parts</span></li>
+        </ul>
+      </article>
+
+      <article class="ex rv d1" id="corpus">
+        <div>
+          <span class="kick">Demonstration</span>
+          <h3><span class="num">5</span>Questions answered with source references</h3>
+          <ol class="steps">
+            <li><b>A prepared demo collection.</b> 50 files with about 23 million words, prepared for this demonstration. The manifest describes this collection's scope.</li>
+            <li><b>One question, asked precisely.</b> A vague question returns a thousand statements. A defined question returns a passage we can open and read.</li>
+            <li><b>References we can inspect.</b> Open the cited verse, letter or transcript. Read the surrounding passage and distinguish quotations from the model's summary.</li>
+          </ol>
+          <p class="take">This demo illustrates source checking. BBT Archive remains the reference.</p>
+        </div>
+        <div>
+          <ul class="mat">
+            <li><a href="files/notebooklm-corpus-MANIFEST.md">The corpus manifest</a><span class="sz">Markdown, 27 KB &middot; what is inside, what is deliberately outside, how the reference markers were built</span></li>
+          </ul>
+          <p class="pq"><b>To build your own, in your language:</b></p>
+          <ol class="steps">
+            <li>Convert his books, letters and transcripts to text. Keep only his own words; leave out the magazines, offerings and biographies.</li>
+            <li>Insert a reference marker at every verse, letter and lecture heading.</li>
+            <li>Pack the text into at most 50 files of under 500,000 words each.</li>
+            <li>Upload to NotebookLM and let it index; on this size, that takes time.</li>
+            <li>Ask plainly. Read the reference before you trust the answer.</li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="ex rv d2" id="lawbook">
+        <div>
+          <span class="kick">Demonstration</span>
+          <h3><span class="num">6</span>A searchable draft of the ISKCON Law Book</h3>
+          <ol class="steps">
+            <li><b>Ordered in 1995.</b> A 1995 GBC resolution called for a consolidated Law Book. This demonstration uses the 2018 edition as its starting point.</li>
+            <li><b>Assembled overnight.</b> Published resolutions from 2019 to 2026 organised under the book's chapters, with references to the source documents.</li>
+            <li><b>A draft, and nothing more.</b> An unapproved working draft. An authorised committee must review which provisions remain in force and resolve conflicts.</li>
+          </ol>
+          <p class="take">422 pages with search and source links. Legal and institutional review still matter.</p>
+        </div>
+        <ul class="mat">
+          <li><a href="https://haripetrov-stack.github.io/iskcon-law-book/" rel="noopener">Open the searchable draft</a><span class="sz">the Law Book site &middot; search and source links</span></li>
+          <li><a href="https://haripetrov-stack.github.io/iskcon-law-book/iskcon-law-draft-2018-2026.pdf" rel="noopener">Download the PDF (10 MB, 422 pages)</a><span class="sz">the same draft for print</span></li>
+        </ul>
+      </article>
+
+      <article class="ex rv d3" id="ownwork">
+        <div>
+          <span class="kick">Demonstration</span>
+          <h3><span class="num">7</span>From our own work</h3>
+          <p><b>Voice Chat.</b> A question spoken aloud, in ordinary language, and an answer spoken back within seconds. Useful for ordering a difficult question before taking it to people who can decide. It can sound confident when it is wrong, so important claims are checked against their sources.</p>
+          <p><b>Months of specialist work, finished in days.</b> On the website below, the assistant did the structure, the code, the page templates and the batch processing of the audio files. A person chose the recordings, the design and the moment to publish.</p>
+          <p>This does not mean every site is free, or that every temple can build one in the same time. Scope, rights to the material, accessibility, maintenance and checks all affect the effort and the cost.</p>
+          <p class="take">The tool did the mechanical part. A person chose, checked and decided.</p>
+        </div>
+        <ul class="mat">
+          <li><a href="https://spiritualsound.space" rel="noopener">spiritualsound.space</a><span class="sz">new website</span></li>
+          <li><a href="https://spiritualsoundspace.com" rel="noopener">spiritualsoundspace.com</a><span class="sz">old website</span></li>
+        </ul>
+      </article>
+
+      <article class="ex rv d4" id="prompt">
+        <div>
+          <span class="kick">Practical</span>
+          <h3><span class="num">8</span>Writing the prompt that works</h3>
+          <p><b>Weak:</b> &ldquo;Compare Bulgarian translation and English.&rdquo; The answer could belong to anything and is discarded.</p>
+          <p><b>Strong:</b> &ldquo;You are checking a finished Bulgarian translation against the English original. Both files are attached. List only the places where the meaning differs: the English, the Bulgarian, and the reason, in a table. Change nothing else.&rdquo;</p>
+          <p><b>The four parts:</b> role, material, task, form. Who it is. What it has in front of it. What is wanted. In what form.</p>
+          <p class="take">A useful prompt states the role, source material, task and required format.</p>
+        </div>
+        <ul class="mat">
+          <li><a href="files/prompt-translation-check.txt">The prompt, ready to adapt</a><span class="sz">plain text</span></li>
+          <li><a href="files/ELM-AI-presentation-v32.pdf">The slides of this talk</a><span class="sz">PDF &middot; deck v32, 16 slides</span></li>
+        </ul>
+      </article>
+
+      <article class="ex full rv d1" id="education">
+        <div>
+          <span class="kick">A question we own</span>
+          <h3><span class="num">9</span>AI in devotee education</h3>
+          <div class="four">
+            <div class="card"><span class="kick">The assessment</span><b>Whose work are we assessing?</b><p>Bhakti-&#347;&#257;str&#299; and higher qualifications depend on students&rsquo; understanding. An essay alone may not establish who wrote it.</p></div>
+            <div class="card"><span class="kick">The style</span><b>Fluency is not proof</b><p>Smooth prose, repeated phrasing and reading aloud can raise questions. AI can also imitate an uneven style and deliberate mistakes.</p></div>
+            <div class="card"><span class="kick">The tools</span><b>Detectors need human review</b><p>Pangram and GPTZero can flag text. False positives and missed AI text occur. A score or a hidden prompt is insufficient evidence.</p></div>
+            <div class="card"><span class="kick">Our courses</span><b>Evidence of learning</b><p>Oral defence, drafts and supervised work help assess understanding. Course leaders should define allowed AI use and disclosure.</p></div>
+          </div>
+          <p class="take">Where is the line for our own courses, and who draws it?</p>
+        </div>
+      </article>
+
+      <article class="ex full rv d2" id="human">
+        <div>
+          <span class="kick">The human side</span>
+          <h3><span class="num">10</span>What it costs the person, not only the budget</h3>
+          <div class="four">
+            <div class="card"><span class="kick">The day</span><b>Work loses its edges</b><p>A subscription buys capacity, and capacity invites more hours. Morning programme, japa and rest are the first things those hours take.</p></div>
+            <div class="card"><span class="kick">The mind</span><b>The work moves into the head</b><p>Less mechanical work, more specifying, judging and checking. That is a heavier kind of tiredness and it is easy to miss in ourselves.</p></div>
+            <div class="card"><span class="kick">The heart</span><b>Attachment without a person</b><p>Companion applications answer warmly at any hour, and the young are most exposed. Providers added protections after serious cases; the pull remains.</p></div>
+            <div class="card"><span class="kick">Why it belongs here</span><b>This is care, not caution</b><p>We look after devotees. What a tool does to a person&rsquo;s day and attention is part of that care, and it belongs in a leadership conversation.</p></div>
+          </div>
+          <p class="take">We care for devotees. Their attention and their daily s&#257;dhana are part of that care.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROTECT -->
+<section class="protect" id="protect">
+  <div class="wrap">
+    <span class="kick rv">Authenticity and proof</span>
+    <h2 class="rv">Digital verification for images, audio and video</h2>
+    <p class="honest rv d1">The Archive already holds the material. The useful additional work is digital processing of what exists, so that each registered original can be checked easily.</p>
+    <div class="four">
+      <div class="card rv d1"><span class="kick">Digital profiles and signatures</span><b>A digital profile for each file</b><p>Record each original&rsquo;s source details and file hash. The Archive can digitally sign the record. A checking tool then compares the hash and verifies the signature.</p></div>
+      <div class="card rv d2"><span class="kick">Checking quotations</span><b>AI finds the source</b><p>AI finds exact passages and context in the Archive. A quotation absent after a full check is suspect. Voice similarity alone cannot authenticate a recording.</p></div>
+      <div class="card rv d3"><span class="kick">The prior question</span><b>Should such a tool exist?</b><p>Before we ask whether an &ldquo;ask Prabhup&#257;da&rdquo; service answers accurately, we must ask whether it should exist. A synthesised reply in his person is not his instruction, and devotees may not hear the difference.</p></div>
+      <div class="card rv d4"><span class="kick">Platforms and law</span><b>Platform action and legal rights</b><p>Content ID matches reused recordings. Rights holders can pursue infringements. EU rules require disclosure of covered deepfakes.</p></div>
+    </div>
+    <p class="honest rv d1">Approved tools should cite the Archive and separate quotation from summary. Whether a personified tool is permitted at all is a decision of its own.</p>
+    <p class="plain rv d2"><b>A first step:</b> a pilot with a selected group of originals, with digital profiles, signed records and an easy check. Test exact copies, altered files and approved converted versions. Agree who certifies the records and who maintains the register.</p>
+    <p class="plain rv d3"><b>Status:</b> this is a proposal for additional processing and services on the existing archive. It does not claim that BBT Archive has built such a register or adopted this policy.</p>
+  </div>
+</section>
+
+<!-- ASKS -->
+<section class="ask" id="asks">
+  <div class="wrap">
+    <span class="kick rv">What this session asks</span>
+    <h2 class="rv">A request to begin policy work</h2>
+    <p class="big rv d1">ELM asks the RGB to begin work on an AI policy for Europe. No vote takes place in this session.</p>
+    <p class="next rv d2">Part one ends &middot; Madayanti Mataji continues with ethics &middot; then one hour of questions, together</p>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section class="about" id="questions">
+  <div class="wrap">
+    <span class="kick rv">For the tables</span>
+    <h2 class="rv">Six questions for this room</h2>
+    <p class="lead rv d1">An agenda for the discussion. Each table is invited to choose the three most pressing questions.</p>
+    <div class="qs">
+      <div class="q rv d1"><span class="n">1</span><b>Image, voice and likeness</b><span>May anyone generate the image, voice or video of &#346;r&#299;la Prabhup&#257;da, or of a devotee? Should a tool that answers in his person exist at all?</span></div>
+      <div class="q rv d2"><span class="n">2</span><b>Our education</b><span>Is AI usage permitted in essays and examinations, and to what extent?</span></div>
+      <div class="q rv d3"><span class="n">3</span><b>Research</b><span>How far may AI go in the studies and surveys we commission?</span></div>
+      <div class="q rv d4"><span class="n">4</span><b>Devotee data</b><span>What must never be entered into a public tool?</span></div>
+      <div class="q rv d5"><span class="n">5</span><b>Policy ownership</b><span>Which policies already exist globally, in Europe and in each yatra? Who is responsible for the gaps?</span></div>
+      <div class="q rv d6"><span class="n">6</span><b>Accountability</b><span>Who is responsible when AI goes wrong in ISKCON's name?</span></div>
+    </div>
+    <p class="qmotto rv d7">These questions need named owners and an agreed process for decisions.</p>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="sources" id="sources">
+  <div class="wrap">
+    <h2 class="rv">Sources</h2>
+    <p class="lead rv d1">The sources named in the talk, slide by slide.</p>
+    <ul class="srcl rv d2" id="srcl">
+      <li><b>AI is already inside the organisation, 88 % and 362:</b> <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" rel="noopener">Stanford HAI, The 2026 AI Index Report</a>. 88 % of surveyed organisations report using AI in at least one business function; the adoption figure reaches the Index through McKinsey's survey, whose question wording was broadened in November 2025. 362 AI incidents were recorded for 2025, against 233 for 2024.</li>
+      <li><b>Nonprofit value, 7 %:</b> <a href="https://539405.fs1.hubspotusercontent-na1.net/hubfs/539405/AI%20Report/Virtuous%202026%20Nonprofit%20AI%20Adoption%20Report.pdf" rel="noopener">Virtuous, 2026 Nonprofit AI Adoption Report</a> (346 nonprofits). The two surveys use different samples and definitions and are not comparable with one another.</li>
+      <li><b>Business value, if asked:</b> <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" rel="noopener">McKinsey, The state of AI, global survey 2026</a>. 37 % report some positive EBIT impact; about 6 % meet the survey's definition of a high performer.</li>
+      <li><b>Agents, permissions and organisational risk:</b> <a href="https://doi.org/10.6028/NIST.AI.600-1" rel="noopener">NIST AI 600-1, Artificial Intelligence Risk Management Framework: Generative AI Profile</a>.</li>
+      <li><b>Digital verification, the technical means:</b> <a href="https://csrc.nist.gov/glossary/term/hash_function" rel="noopener">NIST glossary, hash function</a> &middot; <a href="https://csrc.nist.gov/glossary/term/digital_signature" rel="noopener">NIST glossary, digital signature</a> &middot; <a href="https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html" rel="noopener">C2PA explainer, Content Credentials</a> &middot; <a href="https://www.asvspoof.org/" rel="noopener">ASVspoof, voice anti-spoofing</a> &middot; <a href="https://support.google.com/youtube/answer/2797370?hl=en" rel="noopener">YouTube Help, Content ID</a> &middot; <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" rel="noopener">European Commission, transparency obligations under Article 50 of the AI Act</a></li>
+      <li><b>The book production figures:</b> an internal case from the Bulgarian editions. Twelve titles and about 2,000 findings; a hyphenation dictionary of 913,000 lines with more than 50,000 corrections carried. The sample report and the prompt are linked above.</li>
+      <li><b>The precedent, b&#7771;had-m&#7771;da&#7749;ga:</b> &#346;r&#299;la Prabhup&#257;da&rsquo;s own lectures, in which he relates his Guru Mah&#257;r&#257;ja&rsquo;s words about the printing press. The passages are inside the demonstration collection and can be opened there.</li>
+      <li><b>The demo collection:</b> the manifest linked above describes its scope, including the exclusions. BBT Archive remains the reference.</li>
+      <li><b>The Law Book draft:</b> the 2018 ISKCON Law Book and the resolutions published on the GBC site, 2019 to 2026.</li>
+      <li><b>AI in devotee education, detectors and their limits:</b> <a href="https://arxiv.org/abs/2304.02819" rel="noopener">arxiv.org/abs/2304.02819</a> &middot; <a href="https://arxiv.org/abs/2602.05769" rel="noopener">arxiv.org/abs/2602.05769</a></li>
+      <li><b>Companion applications and the young:</b> <a href="https://www.commonsensemedia.org/sites/default/files/featured-content/files/justification-for-ai-safeguards-for-kids-2026.pdf" rel="noopener">Common Sense Media, justification for AI safeguards for kids, 2026</a> &middot; <a href="https://www.troutmanprivacy.com/2026/01/analyzing-the-new-ai-companion-chatbot-laws/" rel="noopener">an overview of the 2026 companion chatbot laws</a>, which require disclosure to minors, forbid manipulative engagement techniques and mandate crisis referral protocols.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GROUP -->
+<section class="group" id="group">
+  <div class="wrap">
+    <h2 class="rv">The working group</h2>
+    <p class="rv d1">Interested in a shared European workflow library, per-language translation QA,
+    joint training and one common guardrails template?</p>
+    <a class="btn rv d2" href="mailto:info@bhaktiyoga.info?subject=ELM%20AI%20working%20group">Join the working group</a>
+    <span class="mail rv d3">info@bhaktiyoga.info &middot; subject &ldquo;ELM AI working group&rdquo;</span>
+  </div>
+</section>
+
+<footer>
+  <p>Prepared with the help of an AI coworker &middot; Pitambara dasa &middot; 2026</p>
+  <p class="note">Nothing on this page was voted on. ELM asks the RGB to begin work on an AI policy for Europe.</p>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(RM) document.documentElement.classList.add('rm');
+
+  /* hero title: word stagger */
+  var h = document.getElementById('heroTitle');
+  var words = h.textContent.split(' ');
+  h.textContent = '';
+  words.forEach(function(w,i){
+    var s = document.createElement('span'); s.className='w'; s.textContent=w;
+    s.style.animationDelay = (0.15+i*0.12)+'s';
+    h.appendChild(s);
+    if(i<words.length-1) h.appendChild(document.createTextNode(' '));
+  });
+
+  /* particles */
+  var cv = document.getElementById('stars');
+  if(cv && !RM){
+    var ctx = cv.getContext('2d'), P=[], running=true, dpr=Math.min(window.devicePixelRatio||1,2);
+    function size(){ cv.width=cv.offsetWidth*dpr; cv.height=cv.offsetHeight*dpr; }
+    size(); addEventListener('resize', size);
+    for(var i=0;i<42;i++) P.push({x:Math.random(),y:Math.random(),r:.8+Math.random()*1.7,
+      vx:(Math.random()-.5)*.00035,vy:(Math.random()-.5)*.00028,a:.25+Math.random()*.5});
+    (function tick(){
+      if(running){
+        ctx.clearRect(0,0,cv.width,cv.height);
+        P.forEach(function(p){
+          p.x=(p.x+p.vx+1)%1; p.y=(p.y+p.vy+1)%1;
+          ctx.beginPath();
+          ctx.arc(p.x*cv.width,p.y*cv.height,p.r*dpr,0,6.2832);
+          ctx.fillStyle='rgba(217,154,43,'+p.a+')';
+          ctx.fill();
+        });
+      }
+      requestAnimationFrame(tick);
+    })();
+    new IntersectionObserver(function(e){ running = e[0].isIntersecting; })
+      .observe(document.getElementById('top'));
+  }
+
+  /* reveals */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* dots */
+  var dots = document.querySelectorAll('.dots li');
+  var secio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        dots.forEach(function(d){ d.classList.toggle('on', d.dataset.for===e.target.id); });
+      }
+    });
+  },{threshold:.3});
+  dots.forEach(function(d){
+    var sec = document.getElementById(d.dataset.for);
+    if(sec){ secio.observe(sec);
+      d.querySelector('button').addEventListener('click',function(){ sec.scrollIntoView({behavior: RM?'auto':'smooth'}); });
+    }
+  });
+
+  /* counters */
+  function fmt(n){ return n.toLocaleString('en-GB'); }
+  function count(el){
+    var t=+el.dataset.target, suf=el.dataset.suffix||'', pre=el.dataset.prefix||'', t0=null, D=1400;
+    function fin(){ el.textContent=pre+fmt(t)+suf; }
+    if(RM || document.hidden){ fin(); return; }
+    function step(ts){
+      if(!t0) t0=ts;
+      var p=Math.min((ts-t0)/D,1), e=1-Math.pow(1-p,3);
+      el.textContent=pre+fmt(Math.round(t*e))+suf;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    setTimeout(fin, D+500); /* guaranteed final value even if rAF is throttled */
+  }
+  var stats=document.getElementById('stats');
+  new IntersectionObserver(function(e,ob){
+    if(e[0].isIntersecting){ stats.querySelectorAll('[data-target]').forEach(count); ob.disconnect(); }
+  },{threshold:.35}).observe(stats);
+
+  /* typewriter */
+  var tEl=document.getElementById('type'), caret=document.getElementById('caret'), after=document.getElementById('after');
+  var full=tEl.textContent;
+  if(!RM){
+    tEl.textContent='';
+    new IntersectionObserver(function(e,ob){
+      if(!e[0].isIntersecting) return;
+      ob.disconnect(); caret.hidden=false;
+      var i=0;
+      (function ty(){
+        if(i<=full.length){ tEl.textContent=full.slice(0,i); i++; setTimeout(ty,34); }
+        else{ setTimeout(function(){caret.hidden=true;},1200); after.classList.add('show'); }
+      })();
+    },{threshold:.6}).observe(document.getElementById('about'));
+  } else after.classList.add('show');
+})();
+</script>
 </body>
 </html>

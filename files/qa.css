@@ -1,0 +1,7 @@
+body{font-family:Georgia,'Times New Roman',serif;background:#FAF4E9;color:#33291C;max-width:1150px;margin:28px auto;padding:0 30px;font-size:17px;line-height:1.5}
+h1{color:#2A2A55;font-size:30px} h2{color:#2A2A55;font-size:22px;margin-top:28px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th{background:#2A2A55;color:#DFA33A;padding:5px 9px;text-align:left}
+td{border:1px solid #E5DCC8;padding:4px 9px}
+blockquote{border-left:4px solid #C9861F;margin-left:0;padding:2px 16px;background:#F2E7D3}
+code{background:#F2E7D3;padding:1px 4px}

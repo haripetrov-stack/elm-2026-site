@@ -1,0 +1,14 @@
+The prompt behind the translation checks (as shown on the slide "Writing the prompt that works")
+
+WEAK
+"Compare Bulgarian translation and English."
+The answer could belong to anything and is discarded.
+
+STRONG
+"You are checking a finished Bulgarian translation against the English original. Both files are attached. List only the places where the meaning differs: the English, the Bulgarian, and the reason, in a table. Change nothing else."
+
+THE FOUR PARTS: role, material, task, form.
+Who it is. What it has in front of it. What is wanted. In what form.
+
+THE TEST: could a new secretary do it?
+If a competent person could not act on the instruction, neither can the system.
